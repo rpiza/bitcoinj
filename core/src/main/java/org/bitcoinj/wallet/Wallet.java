@@ -675,6 +675,16 @@ public class Wallet extends BaseTaggableObject
         return address;
     }
 
+    // Afegit RPM. Necessari per a mantenir l'adreça de n'Alice com changeAddress
+    public void reuseAddress(KeyChain.KeyPurpose purpose, ECKey key) {
+        keyChainGroupLock.lock();
+        try {
+            keyChainGroup.reuseAddress(purpose, key);
+        } finally {
+            keyChainGroupLock.unlock();
+        }
+        saveNow();
+    }
     /**
      * An alias for calling {@link #freshAddress(KeyChain.KeyPurpose)} with
      * {@link KeyChain.KeyPurpose#RECEIVE_FUNDS} as the parameter.

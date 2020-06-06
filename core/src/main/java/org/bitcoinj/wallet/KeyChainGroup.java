@@ -321,6 +321,16 @@ public class KeyChainGroup implements KeyBag {
         }
     }
 
+     //Afegit RPM. Per mantenir l'adreça d'Alice com changeAddress
+    public void reuseAddress(KeyChain.KeyPurpose purpose, ECKey currentK) {
+
+//        if (current == null) {
+//            current = freshAddress(purpose);
+//       }
+//        currentAddresses.put(purpose, current);
+        currentKeys.put(purpose, (DeterministicKey) currentK);
+
+    }
     /**
      * Returns a key that has not been returned by this method before (fresh). You can think of this as being
      * a newly created key, although the notion of "create" is not really valid for a
